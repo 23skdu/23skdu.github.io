@@ -142,41 +142,52 @@ if (canvas) {
 
 /* ---------- Data loading ---------- */
 const FALLBACK_URL = '/data/projects.json';
-const API_URL = 'https://api.github.com/users/23skdu/repos?per_page=100&sort=pushed';
+
+async function fetchAllRepos() {
+  const pages = [1, 2, 3, 4, 5];
+  const results = await Promise.allSettled(pages.map(p =>
+    fetch(`https://api.github.com/users/23skdu/repos?per_page=100&page=${p}&sort=pushed`, {
+      headers: { 'Accept': 'application/vnd.github+json' }
+    }).then(r => r.ok ? r.json() : [])
+  ));
+  const combined = [];
+  for (const r of results) {
+    if (r.status === 'fulfilled' && Array.isArray(r.value)) combined.push(...r.value);
+  }
+  // dedup by id
+  const seen = new Set();
+  const uniq = combined.filter(r => { if (seen.has(r.id)) return false; seen.add(r.id); return true; });
+  return uniq
+    .filter(r => !r.fork && r.name !== '23skdu.github.io')
+    .map(r => ({
+      name: r.name,
+      description: r.description || '',
+      language: r.language || 'Other',
+      stars: r.stargazers_count || 0,
+      forks: r.forks_count || 0,
+      topics: r.topics || [],
+      pushed_at: r.pushed_at,
+      html_url: r.html_url,
+      homepage: r.homepage || ''
+    }))
+    .sort((a, b) => (b.pushed_at || '').localeCompare(a.pushed_at || ''));
+}
 
 async function loadProjects() {
-  // Try live API first (cached in sessionStorage for 10 min)
-  const cacheKey = 'skdu_repos_v1';
+  const cacheKey = 'skdu_repos_v2';
   const cached = sessionStorage.getItem(cacheKey);
   if (cached) {
     try { return JSON.parse(cached); } catch (e) {}
   }
-  // Try API
   try {
-    const res = await fetch(API_URL, { headers: { 'Accept': 'application/vnd.github+json' } });
-    if (res.ok) {
-      const data = await res.json();
-      const owned = data
-        .filter(r => !r.fork && r.name !== '23skdu.github.io')
-        .map(r => ({
-          name: r.name,
-          description: r.description || '',
-          language: r.language || 'Other',
-          stars: r.stargazers_count || 0,
-          forks: r.forks_count || 0,
-          topics: r.topics || [],
-          pushed_at: r.pushed_at,
-          html_url: r.html_url,
-          homepage: r.homepage || ''
-        }))
-        .sort((a, b) => (b.pushed_at || '').localeCompare(a.pushed_at || ''));
+    const owned = await fetchAllRepos();
+    if (owned.length) {
       sessionStorage.setItem(cacheKey, JSON.stringify(owned));
       return owned;
     }
   } catch (e) {
     // fall through
   }
-  // Fallback to static file
   try {
     const res = await fetch(FALLBACK_URL);
     if (res.ok) return await res.json();
