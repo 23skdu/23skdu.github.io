@@ -233,7 +233,7 @@ async function fetchAllRepos() {
 }
 
 async function loadProjects() {
-  const cacheKey = 'skdu_repos_v3';
+  const cacheKey = 'skdu_repos_v4';
   const cached = sessionStorage.getItem(cacheKey);
   if (cached) {
     try { return JSON.parse(cached); } catch (e) {}
