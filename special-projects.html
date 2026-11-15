@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Special Projects — 23skdu</title>
+  <meta name="description" content="Highlighted projects from 23skdu: RaceToDeadEnd, Longbow, emlgo, terraform_ast.">
+  <meta name="theme-color" content="#0a0a14">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://23skdu.github.io/special-projects.html">
+  <link rel="stylesheet" href="/styles.css?v=3">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="/"><span class="brand-glyph">[</span>23skdu<span class="brand-glyph">]</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/special-projects.html">Special Projects</a></li>
+        <li><a href="/#projects">Other</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><a class="btn btn-ghost" href="https://github.com/23skdu" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="section" id="special-projects">
+      <div class="container">
+        <h2 class="section-title"><span class="hash">#</span> special projects</h2>
+        <p class="section-sub">Highlighted builds and experiments.</p>
+        <p>A short summary of standout work across games, vector engines, math primitives, and infrastructure tooling.</p>
+        <div class="projects-grid">
+          <article class="project-card">
+            <h3><a href="https://23skdu.github.io/RaceToDeadEnd/" target="_blank" rel="noopener noreferrer">RaceToDeadEnd</a></h3>
+            <p class="project-desc">Isometric (2.5D) vehicular combat racing game built with Godot 4.7.2 — a Spy Hunter-inspired endless highway shooter. Playable in the browser.</p>
+            <a href="https://23skdu.github.io/RaceToDeadEnd/" target="_blank" rel="noopener noreferrer">
+              <img src="https://23skdu.github.io/RaceToDeadEnd/index.png" alt="RaceToDeadEnd screenshot" loading="lazy" width="320" style="border-radius:8px;border:1px solid var(--border);margin:.5rem 0">
+            </a>
+            <div class="project-links">
+              <a href="https://23skdu.github.io/RaceToDeadEnd/" target="_blank" rel="noopener noreferrer">play ↗</a>
+              <a href="https://github.com/23skdu/RaceToDeadEnd" target="_blank" rel="noopener noreferrer">repo ↗</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <h3><a href="https://github.com/23skdu/longbow" target="_blank" rel="noopener noreferrer">Longbow</a></h3>
+            <p class="project-desc">Apache Arrow Flight clustered vector engine for high-throughput agent memory sharing.</p>
+            <div class="project-links">
+              <a href="https://github.com/23skdu/longbow" target="_blank" rel="noopener noreferrer">repo ↗</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <h3><a href="https://github.com/23skdu/emlgo" target="_blank" rel="noopener noreferrer">emlgo</a></h3>
+            <p class="project-desc">The EML Operator: a universal primitive for continuous mathematics.</p>
+            <div class="project-links">
+              <a href="https://github.com/23skdu/emlgo" target="_blank" rel="noopener noreferrer">repo ↗</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <h3><a href="https://github.com/23skdu/terraform_ast" target="_blank" rel="noopener noreferrer">terraform_ast</a></h3>
+            <p class="project-desc">Abstract Syntax Tree (AST) checker for opinionated Terraform wrappers.</p>
+            <div class="project-links">
+              <a href="https://github.com/23skdu/terraform_ast" target="_blank" rel="noopener noreferrer">repo ↗</a>
+            </div>
+          </article>
+        </div>
+        <p class="muted small" style="margin-top:1.5rem"><a href="/">← Back to home</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> 23skdu · hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.getElementById('nav-links');
+    if (toggle && links) {
+      toggle.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }));
+    }
+  </script>
+</body>
+</html>
