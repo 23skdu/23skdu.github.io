@@ -13,6 +13,7 @@ const heroSection = document.getElementById('hero');
 let renderer, scene, camera, composer, controls;
 let animId = null;
 const clock = new THREE.Clock();
+let saucerState = null;
 
 function initScene() {
   if (!canvas) return;
@@ -33,18 +34,18 @@ function initScene() {
 
   // Lights
   scene.add(new THREE.AmbientLight(0x222244, 0.6));
-  const l1 = new THREE.PointLight(0x00f0ff, 2.5, 30);
+  const l1 = new THREE.PointLight(0xff3b3b, 2.5, 30);
   l1.position.set(4, 3, 2);
   scene.add(l1);
-  const l2 = new THREE.PointLight(0xff2bd6, 2.5, 30);
+  const l2 = new THREE.PointLight(0x39ff14, 2.5, 30);
   l2.position.set(-4, -2, -2);
   scene.add(l2);
-  const l3 = new THREE.PointLight(0xffe600, 1.2, 20);
+  const l3 = new THREE.PointLight(0x39ff14, 1.2, 20);
   l3.position.set(0, 4, -3);
   scene.add(l3);
 
   // Grid floor
-  const grid = new THREE.GridHelper(40, 40, 0x00f0ff, 0x1a1a3a);
+  const grid = new THREE.GridHelper(40, 40, 0xff3b3b, 0x1a1a3a);
   grid.position.y = -2;
   grid.material.opacity = 0.35;
   grid.material.transparent = true;
@@ -60,7 +61,7 @@ function initScene() {
     pPos[i * 3 + 2] = (Math.random() - 0.5) * 30;
   }
   pGeom.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  const pMat = new THREE.PointsMaterial({ color: 0x00f0ff, size: 0.05, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
+  const pMat = new THREE.PointsMaterial({ color: 0xff3b3b, size: 0.05, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
   const points = new THREE.Points(pGeom, pMat);
   scene.add(points);
 
@@ -77,10 +78,29 @@ function initScene() {
     objs.push(m);
     return m;
   };
-  mk(new THREE.TorusKnotGeometry(0.9, 0.28, 120, 16), 0x00f0ff, [0, 0.5, 0]);
-  mk(new THREE.IcosahedronGeometry(1.1, 1), 0xff2bd6, [-2.6, 0.8, -1]);
-  mk(new THREE.OctahedronGeometry(0.9, 0), 0xffe600, [2.6, -0.2, -0.5]);
-  mk(new THREE.TorusGeometry(1.2, 0.05, 8, 40), 0x00f0ff, [0, -0.5, -2]);
+  mk(new THREE.TorusKnotGeometry(0.9, 0.28, 120, 16), 0xff3b3b, [0, 0.5, 0]);
+  mk(new THREE.IcosahedronGeometry(1.1, 1), 0x39ff14, [-2.6, 0.8, -1]);
+  mk(new THREE.OctahedronGeometry(0.9, 0), 0x39ff14, [2.6, -0.2, -0.5]);
+  mk(new THREE.TorusGeometry(1.2, 0.05, 8, 40), 0xff3b3b, [0, -0.5, -2]);
+
+  // Flying saucer (random path)
+  const saucer = new THREE.Group();
+  const discMat = new THREE.MeshStandardMaterial({ color: 0xff3b3b, emissive: 0xff3b3b, emissiveIntensity: 0.5, metalness: 0.7, roughness: 0.25 });
+  const disc = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.3, 0.22, 40), discMat);
+  disc.rotation.x = Math.PI / 2;
+  saucer.add(disc);
+  const domeMat = new THREE.MeshStandardMaterial({ color: 0x39ff14, emissive: 0x39ff14, emissiveIntensity: 0.9, transparent: true, opacity: 0.75 });
+  const dome = new THREE.Mesh(new THREE.SphereGeometry(0.62, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), domeMat);
+  dome.position.y = 0.12;
+  saucer.add(dome);
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(1.3, 0.06, 8, 40), new THREE.MeshStandardMaterial({ color: 0x39ff14, emissive: 0x39ff14, emissiveIntensity: 1 }));
+  rim.rotation.x = Math.PI / 2;
+  saucer.add(rim);
+  const sLight = new THREE.PointLight(0x39ff14, 1.6, 12);
+  saucer.add(sLight);
+  saucer.position.set(0, 2.2, 0);
+  scene.add(saucer);
+  saucerState = { mesh: saucer, target: new THREE.Vector3(0, 2.2, 0), timer: 1 };
 
   // Post-processing bloom
   composer = new EffectComposer(renderer);
@@ -130,6 +150,18 @@ function animate() {
       c.position.y += Math.sin(t + i) * 0.0008;
     }
   });
+  // Flying saucer random flight
+  if (saucerState) {
+    const s = saucerState;
+    s.timer -= 0.016;
+    if (s.timer <= 0) {
+      s.target.set((Math.random() - 0.5) * 14, 1.2 + Math.random() * 3, (Math.random() - 0.5) * 14);
+      s.timer = 2.5 + Math.random() * 4;
+    }
+    s.mesh.position.lerp(s.target, 0.012);
+    s.mesh.rotation.y += 0.025;
+    s.mesh.rotation.z = Math.sin(clock.getElapsedTime() * 1.5) * 0.15;
+  }
   controls.update();
   composer.render();
 }
@@ -260,7 +292,7 @@ function renderGrid() {
     const card = document.createElement('article');
     card.className = 'project-card';
     const topics = (p.topics || []).slice(0, 4).map(t => `<span class="topic">${escapeHtml(t)}</span>`).join('');
-    const activeBadge = isActive(p.pushed_at) ? '<span class="topic" style="border-color:var(--cyan);color:var(--cyan)">active</span>' : '';
+    const activeBadge = isActive(p.pushed_at) ? '<span class="topic" style="border-color:var(--red);color:var(--red)">active</span>' : '';
     card.innerHTML = `
       <h3><a href="${escapeAttr(p.html_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.name)}</a></h3>
       <p class="project-desc">${escapeHtml(p.description || 'No description.')}</p>
