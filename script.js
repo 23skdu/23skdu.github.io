@@ -83,20 +83,47 @@ function initScene() {
   mk(new THREE.OctahedronGeometry(0.9, 0), 0x0080ff, [2.6, -0.2, -0.5]);
   mk(new THREE.TorusGeometry(1.2, 0.05, 8, 40), 0x0080ff, [0, -0.5, -2]);
 
-  // Flying saucer (random path)
+  // Classic 1950s flying saucer
   const saucer = new THREE.Group();
-  const discMat = new THREE.MeshStandardMaterial({ color: 0xff3b3b, emissive: 0xff3b3b, emissiveIntensity: 0.5, metalness: 0.7, roughness: 0.25 });
-  const disc = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.3, 0.22, 40), discMat);
-  disc.rotation.x = Math.PI / 2;
-  saucer.add(disc);
-  const domeMat = new THREE.MeshStandardMaterial({ color: 0x39ff14, emissive: 0x39ff14, emissiveIntensity: 0.9, transparent: true, opacity: 0.75 });
-  const dome = new THREE.Mesh(new THREE.SphereGeometry(0.62, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), domeMat);
-  dome.position.y = 0.12;
+  const metalMat = new THREE.MeshStandardMaterial({ color: 0xb8b8b8, metalness: 0.9, roughness: 0.2 });
+  // Tapered saucer body
+  const body = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.2, 0.25, 48), metalMat);
+  saucer.add(body);
+  // Lower rim ring
+  const lowerRim = new THREE.Mesh(new THREE.TorusGeometry(1.25, 0.12, 12, 48), metalMat);
+  lowerRim.rotation.x = Math.PI / 2;
+  lowerRim.position.z = 0.05;
+  saucer.add(lowerRim);
+  // Glass dome
+  const glassMat = new THREE.MeshStandardMaterial({ color: 0x88ccff, emissive: 0x224466, emissiveIntensity: 0.3, transparent: true, opacity: 0.55, metalness: 0.1, roughness: 0.05 });
+  const dome = new THREE.Mesh(new THREE.SphereGeometry(0.7, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), glassMat);
+  dome.position.y = 0.18;
   saucer.add(dome);
-  const rim = new THREE.Mesh(new THREE.TorusGeometry(1.3, 0.06, 8, 40), new THREE.MeshStandardMaterial({ color: 0x0080ff, emissive: 0x0080ff, emissiveIntensity: 1 }));
-  rim.rotation.x = Math.PI / 2;
-  saucer.add(rim);
-  const sLight = new THREE.PointLight(0x39ff14, 1.6, 12);
+  // Dome ring
+  const domeRing = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.04, 8, 32), metalMat);
+  domeRing.rotation.x = Math.PI / 2;
+  domeRing.position.y = 0.18;
+  saucer.add(domeRing);
+  // Antenna
+  const antennaMat = new THREE.MeshStandardMaterial({ color: 0x888888, metalness: 0.9, roughness: 0.3 });
+  const antenna = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.6, 8), antennaMat);
+  antenna.position.y = 0.55;
+  saucer.add(antenna);
+  const antennaTip = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8, 8), new THREE.MeshStandardMaterial({ color: 0xff3b3b, emissive: 0xff3b3b, emissiveIntensity: 1 }));
+  antennaTip.position.y = 0.88;
+  saucer.add(antennaTip);
+  // Porthole lights around rim
+  const portColors = [0xff3b3b, 0x39ff14, 0x0080ff];
+  for (let i = 0; i < 12; i++) {
+    const ang = (i / 12) * Math.PI * 2;
+    const col = portColors[i % portColors.length];
+    const light = new THREE.Mesh(new THREE.SphereGeometry(0.09, 12, 8), new THREE.MeshStandardMaterial({ color: col, emissive: col, emissiveIntensity: 1.2 }));
+    light.position.set(Math.cos(ang) * 1.15, -0.05, Math.sin(ang) * 1.15);
+    saucer.add(light);
+  }
+  // Under-glow light
+  const sLight = new THREE.PointLight(0x39ff14, 1.4, 14);
+  sLight.position.y = -0.4;
   saucer.add(sLight);
   saucer.position.set(0, 2.2, 0);
   scene.add(saucer);
