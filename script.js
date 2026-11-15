@@ -40,7 +40,7 @@ function initScene() {
   const l2 = new THREE.PointLight(0x39ff14, 2.5, 30);
   l2.position.set(-4, -2, -2);
   scene.add(l2);
-  const l3 = new THREE.PointLight(0x39ff14, 1.2, 20);
+  const l3 = new THREE.PointLight(0x0080ff, 1.2, 20);
   l3.position.set(0, 4, -3);
   scene.add(l3);
 
@@ -61,7 +61,7 @@ function initScene() {
     pPos[i * 3 + 2] = (Math.random() - 0.5) * 30;
   }
   pGeom.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  const pMat = new THREE.PointsMaterial({ color: 0xff3b3b, size: 0.05, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
+  const pMat = new THREE.PointsMaterial({ color: 0x0080ff, size: 0.05, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
   const points = new THREE.Points(pGeom, pMat);
   scene.add(points);
 
@@ -80,8 +80,8 @@ function initScene() {
   };
   mk(new THREE.TorusKnotGeometry(0.9, 0.28, 120, 16), 0xff3b3b, [0, 0.5, 0]);
   mk(new THREE.IcosahedronGeometry(1.1, 1), 0x39ff14, [-2.6, 0.8, -1]);
-  mk(new THREE.OctahedronGeometry(0.9, 0), 0x39ff14, [2.6, -0.2, -0.5]);
-  mk(new THREE.TorusGeometry(1.2, 0.05, 8, 40), 0xff3b3b, [0, -0.5, -2]);
+  mk(new THREE.OctahedronGeometry(0.9, 0), 0x0080ff, [2.6, -0.2, -0.5]);
+  mk(new THREE.TorusGeometry(1.2, 0.05, 8, 40), 0x0080ff, [0, -0.5, -2]);
 
   // Flying saucer (random path)
   const saucer = new THREE.Group();
@@ -93,7 +93,7 @@ function initScene() {
   const dome = new THREE.Mesh(new THREE.SphereGeometry(0.62, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), domeMat);
   dome.position.y = 0.12;
   saucer.add(dome);
-  const rim = new THREE.Mesh(new THREE.TorusGeometry(1.3, 0.06, 8, 40), new THREE.MeshStandardMaterial({ color: 0x39ff14, emissive: 0x39ff14, emissiveIntensity: 1 }));
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(1.3, 0.06, 8, 40), new THREE.MeshStandardMaterial({ color: 0x0080ff, emissive: 0x0080ff, emissiveIntensity: 1 }));
   rim.rotation.x = Math.PI / 2;
   saucer.add(rim);
   const sLight = new THREE.PointLight(0x39ff14, 1.6, 12);
