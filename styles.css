@@ -82,7 +82,7 @@ h1{font-size:clamp(3rem,12vw,8rem);font-weight:900;margin:0;line-height:1;letter
 .tagline{font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--green);margin:1rem 0 .5rem;font-style:italic}
 .sub{color:var(--muted);max-width:640px;margin:0 0 .5rem}
 .sub .bright{color:#ffff00 !important;text-shadow:0 0 8px rgba(255,255,0,.5)}
-.location{color:var(--muted);margin:0 0 1.5rem;font-size:1.05rem}
+.location{color:#ff0000;margin:0 0 1.5rem;font-size:1.05rem;text-shadow:0 0 8px rgba(255,0,0,.5)}
 .glow-word{display:inline-block}
 .glow-word span{display:inline-block;color:var(--red);text-shadow:0 0 8px rgba(255,59,59,.7),0 0 16px rgba(255,59,59,.4);animation:letterGlow 2.4s ease-in-out infinite}
 .glow-word span:nth-child(1){animation-delay:0s}
