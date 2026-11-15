@@ -65,10 +65,18 @@ code{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;fo
 .hero-content{position:relative;z-index:2;padding-top:4rem}
 .eyebrow{color:var(--red);font-family:monospace;font-size:.9rem;letter-spacing:.1em;margin:0 0 1rem;opacity:.8}
 h1{font-size:clamp(3rem,12vw,8rem);font-weight:900;margin:0;line-height:1;letter-spacing:-.02em}
-.glitch{position:relative;color:#fff;text-shadow:0 0 18px rgba(255,59,59,.35)}
+.glitch{position:relative;color:#a855f7;text-shadow:0 0 18px rgba(168,85,247,.5),0 0 36px rgba(168,85,247,.25)}
 .glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;opacity:.6}
-.glitch::before{color:var(--red);clip-path:inset(0 0 60% 0);transform:translate(-2px,0);animation:glitch1 3s infinite linear}
-.glitch::after{color:var(--green);clip-path:inset(60% 0 0 0);transform:translate(2px,0);animation:glitch2 3s infinite linear}
+.glitch::before{color:#d946ef;clip-path:inset(0 0 60% 0);transform:translate(-2px,0);animation:glitch1 3s infinite linear}
+.glitch::after{color:#7c3aed;clip-path:inset(60% 0 0 0);transform:translate(2px,0);animation:glitch2 3s infinite linear}
+.glow-title span{display:inline-block;animation:titleGlow 2.6s ease-in-out infinite}
+.glow-title span:nth-child(1){animation-delay:0s}
+.glow-title span:nth-child(2){animation-delay:.2s}
+.glow-title span:nth-child(3){animation-delay:.4s}
+.glow-title span:nth-child(4){animation-delay:.6s}
+.glow-title span:nth-child(5){animation-delay:.8s}
+.glow-title span:nth-child(6){animation-delay:1s}
+@keyframes titleGlow{0%,100%{text-shadow:0 0 8px rgba(168,85,247,.5),0 0 16px rgba(168,85,247,.25);transform:translateY(0)}50%{text-shadow:0 0 20px rgba(217,70,239,.9),0 0 40px rgba(124,58,237,.6);transform:translateY(-3px)}}
 @keyframes glitch1{0%,100%{transform:translate(0)}20%{transform:translate(-2px,1px)}40%{transform:translate(1px,-1px)}60%{transform:translate(-1px,0)}80%{transform:translate(2px,1px)}}
 @keyframes glitch2{0%,100%{transform:translate(0)}20%{transform:translate(2px,-1px)}40%{transform:translate(-1px,1px)}60%{transform:translate(1px,0)}80%{transform:translate(-2px,-1px)}}
 .tagline{font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--green);margin:1rem 0 .5rem;font-style:italic}
@@ -175,7 +183,7 @@ h1{font-size:clamp(3rem,12vw,8rem);font-weight:900;margin:0;line-height:1;letter
   .hero-stats{gap:1.25rem}
 }
 @media (prefers-reduced-motion:reduce){
-  .glitch::before,.glitch::after,.scroll-hint,.glow-word span{animation:none}
+  .glitch::before,.glitch::after,.scroll-hint,.glow-word span,.glow-title span{animation:none}
   html{scroll-behavior:auto}
 }
 
