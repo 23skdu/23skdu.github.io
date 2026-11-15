@@ -72,7 +72,20 @@ h1{font-size:clamp(3rem,12vw,8rem);font-weight:900;margin:0;line-height:1;letter
 @keyframes glitch1{0%,100%{transform:translate(0)}20%{transform:translate(-2px,1px)}40%{transform:translate(1px,-1px)}60%{transform:translate(-1px,0)}80%{transform:translate(2px,1px)}}
 @keyframes glitch2{0%,100%{transform:translate(0)}20%{transform:translate(2px,-1px)}40%{transform:translate(-1px,1px)}60%{transform:translate(1px,0)}80%{transform:translate(-2px,-1px)}}
 .tagline{font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--green);margin:1rem 0 .5rem;font-style:italic}
-.sub{color:var(--muted);max-width:640px;margin:0 0 1.5rem}
+.sub{color:var(--muted);max-width:640px;margin:0 0 .5rem}
+.location{color:var(--muted);margin:0 0 1.5rem;font-size:1.05rem}
+.glow-word{display:inline-block}
+.glow-word span{display:inline-block;color:var(--red);text-shadow:0 0 8px rgba(255,59,59,.7),0 0 16px rgba(255,59,59,.4);animation:letterGlow 2.4s ease-in-out infinite}
+.glow-word span:nth-child(1){animation-delay:0s}
+.glow-word span:nth-child(2){animation-delay:.15s}
+.glow-word span:nth-child(3){animation-delay:.3s}
+.glow-word span:nth-child(4){animation-delay:.45s}
+.glow-word span:nth-child(5){animation-delay:.6s}
+.glow-word span:nth-child(6){animation-delay:.75s}
+.glow-word span:nth-child(7){animation-delay:.9s}
+.glow-word span:nth-child(8){animation-delay:1.05s}
+.glow-word span:nth-child(9){animation-delay:1.2s}
+@keyframes letterGlow{0%,100%{text-shadow:0 0 6px rgba(255,59,59,.5),0 0 12px rgba(255,59,59,.25);transform:translateY(0)}50%{text-shadow:0 0 14px rgba(57,255,20,.9),0 0 28px rgba(57,255,20,.5);transform:translateY(-2px);color:var(--green)}}
 .neon{color:var(--red);text-shadow:0 0 8px rgba(255,59,59,.6)}
 .hero-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2rem}
 .hero-stats{display:flex;gap:2rem;flex-wrap:wrap}
@@ -162,7 +175,7 @@ h1{font-size:clamp(3rem,12vw,8rem);font-weight:900;margin:0;line-height:1;letter
   .hero-stats{gap:1.25rem}
 }
 @media (prefers-reduced-motion:reduce){
-  .glitch::before,.glitch::after,.scroll-hint{animation:none}
+  .glitch::before,.glitch::after,.scroll-hint,.glow-word span{animation:none}
   html{scroll-behavior:auto}
 }
 
