@@ -190,7 +190,7 @@ async function fetchAllRepos() {
   const seen = new Set();
   const uniq = combined.filter(r => { if (seen.has(r.id)) return false; seen.add(r.id); return true; });
   return uniq
-    .filter(r => !r.fork && r.name !== '23skdu.github.io')
+    .filter(r => !r.fork && r.name !== '23skdu' && r.name !== '23skdu.github.io')
     .map(r => ({
       name: r.name,
       description: r.description || '',
@@ -206,7 +206,7 @@ async function fetchAllRepos() {
 }
 
 async function loadProjects() {
-  const cacheKey = 'skdu_repos_v2';
+  const cacheKey = 'skdu_repos_v3';
   const cached = sessionStorage.getItem(cacheKey);
   if (cached) {
     try { return JSON.parse(cached); } catch (e) {}
