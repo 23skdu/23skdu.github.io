@@ -1,7 +1,7 @@
 # Jekyll-based local preview server for this GitHub Pages site.
 # Build:  docker build -t 23skdu-jekyll .
 # Run:    docker run --rm -p 4000:4000 -v "$PWD:/srv/jekyll" 23skdu-jekyll
-FROM ruby:3.3-alpine
+FROM ruby:4.0-alpine
 
 RUN apk add --no-cache build-base git
 
