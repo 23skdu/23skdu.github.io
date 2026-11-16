@@ -16,3 +16,14 @@ services:
     working_dir: /work
     # Override with a specific command, e.g. `docker compose run --rm lint make ...`
     command: ["bash"]
+
+  jekyll:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${JEKYLL_PORT:-4000}:4000"
+    volumes:
+      - ./:/srv/jekyll
+    # Branch-aware port: set JEKYLL_PORT (see scripts/serve.sh / Makefile).
+    command: ["jekyll", "serve", "--host", "0.0.0.0", "--port", "4000", "--livereload"]
