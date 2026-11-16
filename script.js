@@ -226,14 +226,37 @@ async function fetchAllRepos() {
       forks: r.forks_count || 0,
       topics: r.topics || [],
       pushed_at: r.pushed_at,
+      created_at: r.created_at,
       html_url: r.html_url,
       homepage: r.homepage || ''
     }))
     .sort((a, b) => (b.pushed_at || '').localeCompare(a.pushed_at || ''));
 }
 
+async function firstCommitDate(repo) {
+  try {
+    const url = `https://api.github.com/repos/23skdu/${encodeURIComponent(repo.name)}/commits?per_page=1`;
+    const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+    if (!res.ok) return repo.created_at || null;
+    const link = res.headers.get('Link') || '';
+    const m = link.match(/<([^>]+)>;\\s*rel="last"/);
+    let target = url;
+    if (m) target = m[1];
+    const r2 = await fetch(target, { headers: { 'Accept': 'application/vnd.github+json' } });
+    if (!r2.ok) return repo.created_at || null;
+    const arr = await r2.json();
+    if (Array.isArray(arr) && arr.length) {
+      const last = arr[arr.length - 1];
+      return last.commit?.committer?.date || last.commit?.author?.date || repo.created_at || null;
+    }
+    return repo.created_at || null;
+  } catch (e) {
+    return repo.created_at || null;
+  }
+}
+
 async function loadProjects() {
-  const cacheKey = 'skdu_repos_v4';
+  const cacheKey = 'skdu_repos_v6';
   const cached = sessionStorage.getItem(cacheKey);
   if (cached) {
     try { return JSON.parse(cached); } catch (e) {}
@@ -241,15 +264,22 @@ async function loadProjects() {
   try {
     const owned = await fetchAllRepos();
     if (owned.length) {
-      sessionStorage.setItem(cacheKey, JSON.stringify(owned));
-      return owned;
+      const enriched = await Promise.all(owned.map(async r => ({
+        ...r,
+        first_commit_at: await firstCommitDate(r)
+      })));
+      sessionStorage.setItem(cacheKey, JSON.stringify(enriched));
+      return enriched;
     }
   } catch (e) {
     // fall through
   }
   try {
     const res = await fetch(FALLBACK_URL);
-    if (res.ok) return await res.json();
+    if (res.ok) {
+      const data = await res.json();
+      return data.map(p => ({ ...p, first_commit_at: p.first_commit_at || p.created_at || null }));
+    }
   } catch (e) {}
   return [];
 }
@@ -290,6 +320,11 @@ function timeAgo(iso) {
   return Math.floor(diff / (86400 * 365)) + 'y ago';
 }
 
+function formatDate(iso) {
+  if (!iso) return '—';
+  try { return new Date(iso).toISOString().slice(0, 10); } catch (e) { return iso; }
+}
+
 function isActive(iso) {
   if (!iso) return false;
   return (Date.now() - new Date(iso).getTime()) < 86400 * 180 * 1000;
@@ -327,6 +362,7 @@ function renderGrid() {
         <span><span class="lang-dot lang-${escapeAttr(p.language)}" style="background:${langColor(p.language)}"></span>${escapeHtml(p.language)}</span>
         <span>★ ${p.stars}</span>
         <span>pushed ${timeAgo(p.pushed_at)}</span>
+        <span title="${escapeAttr(p.first_commit_at || '')}">first commit ${escapeHtml(formatDate(p.first_commit_at))} · ${escapeHtml(timeAgo(p.first_commit_at))}</span>
       </div>
       <div class="project-topics">${activeBadge}${topics}</div>
       <div class="project-links">
