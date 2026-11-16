@@ -1,4 +1,4 @@
-.PHONY: help up down logs restart lint lint-html lint-css lint-js lint-json lint-svg validate clean
+.PHONY: help up down logs restart lint lint-html lint-css lint-js lint-json lint-svg validate clean hooks
 
 LINT := docker compose run --rm -T lint
 
@@ -10,7 +10,8 @@ help:
 	@echo "  restart     Restart the dev server"
 	@echo "  lint        Run all linters/validators"
 	@echo "  validate    Alias for lint (pre-publish checks)"
-	@echo "  clean       Remove containers and lint image"
+	@echo "  clean       Remove venv, caches, containers and lint image"
+	@echo "  hooks       Install pre-commit hooks"
 
 up:
 	docker compose up -d web
@@ -43,4 +44,12 @@ lint: lint-html lint-css lint-js lint-json lint-svg
 validate: lint
 
 clean:
+	rm -rf .venv venv env
+	find . -type d -name __pycache__ -prune -exec rm -rf {} +
+	find . -type f -name '*.pyc' -delete
+	rm -rf .pytest_cache .mypy_cache .ruff_cache .cache node_modules
 	docker compose down --rmi local --volumes --remove-orphans
+
+hooks:
+	python3 -m pip install --quiet --break-system-packages pre-commit
+	python3 -m pre_commit install
