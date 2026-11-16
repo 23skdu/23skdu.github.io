@@ -1,0 +1,18 @@
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+    restart: unless-stopped
+
+  lint:
+    build:
+      context: .
+      dockerfile: Dockerfile.lint
+    volumes:
+      - ./:/work
+    working_dir: /work
+    # Override with a specific command, e.g. `docker compose run --rm lint make ...`
+    command: ["bash"]
