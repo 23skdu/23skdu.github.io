@@ -239,7 +239,7 @@ async function firstCommitDate(repo) {
     const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
     if (!res.ok) return repo.created_at || null;
     const link = res.headers.get('Link') || '';
-    const m = link.match(/<([^>]+)>;\\s*rel="last"/);
+    const m = link.match(/<([^>]+)>;\s*rel="last"/);
     let target = url;
     if (m) target = m[1];
     const r2 = await fetch(target, { headers: { 'Accept': 'application/vnd.github+json' } });
