@@ -165,8 +165,26 @@ function initScene() {
   scene.add(saucer);
   saucerState = { mesh: saucer, target: new THREE.Vector3(0, 2.2, 0), timer: 1 };
 
+  // Moon texture (procedural pale cratered surface)
+  const moonCanvas = document.createElement('canvas');
+  moonCanvas.width = moonCanvas.height = 256;
+  const mctx = moonCanvas.getContext('2d');
+  mctx.fillStyle = '#f2f2f2';
+  mctx.fillRect(0, 0, 256, 256);
+  for (let i = 0; i < 60; i++) {
+    const x = Math.random() * 256;
+    const y = Math.random() * 256;
+    const r = 2 + Math.random() * 14;
+    const g = 180 + Math.random() * 40;
+    mctx.fillStyle = `rgb(${g},${g},${g})`;
+    mctx.beginPath();
+    mctx.arc(x, y, r, 0, Math.PI * 2);
+    mctx.fill();
+  }
+  const moonTex = new THREE.CanvasTexture(moonCanvas);
+
   // Moon in a fixed orbit
-  const moonMat = new THREE.MeshStandardMaterial({ color: 0xcccccc, roughness: 0.9, metalness: 0.1 });
+  const moonMat = new THREE.MeshStandardMaterial({ map: moonTex, color: 0xffffff, roughness: 0.95, metalness: 0.05 });
   const moon = new THREE.Mesh(new THREE.SphereGeometry(0.4, 24, 16), moonMat);
   scene.add(moon);
   window.__moon = moon;
