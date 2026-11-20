@@ -183,6 +183,19 @@ function initScene() {
   }
   const moonTex = new THREE.CanvasTexture(moonCanvas);
 
+  // Glowing smiley face that orbits the moon
+  const smileySprite = new THREE.Sprite(new THREE.SpriteMaterial({
+    map: smileyTex,
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.9,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  }));
+  smileySprite.scale.set(0.35, 0.35, 1);
+  scene.add(smileySprite);
+  window.__smileySprite = smileySprite;
+
   // Moon in a fixed orbit
   const moonMat = new THREE.MeshStandardMaterial({ map: moonTex, color: 0xffffff, roughness: 0.95, metalness: 0.05 });
   const moon = new THREE.Mesh(new THREE.SphereGeometry(0.2, 24, 16), moonMat);
@@ -245,6 +258,18 @@ function animate() {
     const radius = 2.2;
     moon.position.set(Math.cos(angle) * radius, 0.8 + Math.sin(t * 0.2) * 0.1, Math.sin(angle) * radius);
     moon.rotation.y = angle;
+  }
+
+  // Glowing smiley face orbiting the moon
+  const smileySprite = window.__smileySprite;
+  if (smileySprite && moon) {
+    const a = t * 1.6;
+    const r = 0.9;
+    smileySprite.position.set(
+      moon.position.x + Math.cos(a) * r,
+      moon.position.y + Math.sin(a * 0.8) * 0.35,
+      moon.position.z + Math.sin(a) * r
+    );
   }
   // Flying saucer random flight
   if (saucerState) {
