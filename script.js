@@ -61,7 +61,38 @@ function initScene() {
     pPos[i * 3 + 2] = (Math.random() - 0.5) * 30;
   }
   pGeom.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  const pMat = new THREE.PointsMaterial({ color: 0xffff00, size: 0.06, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending });
+
+  // Little yellow smiley-face sprite for the particles
+  const smileyCanvas = document.createElement('canvas');
+  smileyCanvas.width = smileyCanvas.height = 64;
+  const sctx = smileyCanvas.getContext('2d');
+  sctx.fillStyle = '#ffff00';
+  sctx.beginPath();
+  sctx.arc(32, 32, 30, 0, Math.PI * 2);
+  sctx.fill();
+  sctx.fillStyle = '#1a1a1a';
+  sctx.beginPath();
+  sctx.arc(22, 26, 4, 0, Math.PI * 2);
+  sctx.fill();
+  sctx.beginPath();
+  sctx.arc(42, 26, 4, 0, Math.PI * 2);
+  sctx.fill();
+  sctx.strokeStyle = '#1a1a1a';
+  sctx.lineWidth = 3;
+  sctx.beginPath();
+  sctx.arc(32, 34, 14, 0.15 * Math.PI, 0.85 * Math.PI);
+  sctx.stroke();
+
+  const smileyTex = new THREE.CanvasTexture(smileyCanvas);
+  const pMat = new THREE.PointsMaterial({
+    map: smileyTex,
+    color: 0xffffff,
+    size: 0.18,
+    transparent: true,
+    alphaTest: 0.5,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending
+  });
   const points = new THREE.Points(pGeom, pMat);
   scene.add(points);
 
