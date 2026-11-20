@@ -165,6 +165,12 @@ function initScene() {
   scene.add(saucer);
   saucerState = { mesh: saucer, target: new THREE.Vector3(0, 2.2, 0), timer: 1 };
 
+  // Moon in a fixed orbit
+  const moonMat = new THREE.MeshStandardMaterial({ color: 0xcccccc, roughness: 0.9, metalness: 0.1 });
+  const moon = new THREE.Mesh(new THREE.SphereGeometry(0.4, 24, 16), moonMat);
+  scene.add(moon);
+  window.__moon = moon;
+
   // Post-processing bloom
   composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
@@ -206,13 +212,22 @@ function animate() {
   animId = requestAnimationFrame(animate);
   const t = clock.getElapsedTime();
   // gentle floating
+  const moon = window.__moon;
   scene.children.forEach((c, i) => {
+    if (c === moon) return;
     if (c.isMesh && c.geometry && c.geometry.type !== 'BufferGeometry') {
       c.rotation.x = t * 0.3 + i;
       c.rotation.y = t * 0.5 + i;
       c.position.y += Math.sin(t + i) * 0.0008;
     }
   });
+  // Moon: fixed orbit, rotating at the same speed as the axes (0.5 rad/s on Y)
+  if (moon) {
+    const angle = t * 0.5;
+    const radius = 5;
+    moon.position.set(Math.cos(angle) * radius, 1.5 + Math.sin(t * 0.2) * 0.2, Math.sin(angle) * radius);
+    moon.rotation.y = angle;
+  }
   // Flying saucer random flight
   if (saucerState) {
     const s = saucerState;
