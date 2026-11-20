@@ -423,3 +423,33 @@ async function boot() {
 }
 
 boot();
+
+/* ---------- Auto-scroll through sections ---------- */
+(function setupAutoScroll() {
+  const sectionIds = ['hero', 'about', 'special-projects', 'projects', 'contact'];
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+  if (sections.length < 2) return;
+
+  let idx = 0;
+  let enabled = true;
+  let timer = null;
+
+  const disable = () => {
+    if (!enabled) return;
+    enabled = false;
+    if (timer) clearTimeout(timer);
+  };
+
+  const tick = () => {
+    if (!enabled) return;
+    idx = (idx + 1) % sections.length;
+    sections[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    timer = setTimeout(tick, 20000);
+  };
+
+  timer = setTimeout(tick, 20000);
+
+  ['click', 'keydown', 'touchstart'].forEach(evt => {
+    window.addEventListener(evt, disable, { once: true, passive: true });
+  });
+})();
