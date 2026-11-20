@@ -66,22 +66,10 @@ function initScene() {
   const smileyCanvas = document.createElement('canvas');
   smileyCanvas.width = smileyCanvas.height = 64;
   const sctx = smileyCanvas.getContext('2d');
-  sctx.fillStyle = '#ffff00';
-  sctx.beginPath();
-  sctx.arc(32, 32, 30, 0, Math.PI * 2);
-  sctx.fill();
-  sctx.fillStyle = '#1a1a1a';
-  sctx.beginPath();
-  sctx.arc(22, 26, 4, 0, Math.PI * 2);
-  sctx.fill();
-  sctx.beginPath();
-  sctx.arc(42, 26, 4, 0, Math.PI * 2);
-  sctx.fill();
-  sctx.strokeStyle = '#1a1a1a';
-  sctx.lineWidth = 3;
-  sctx.beginPath();
-  sctx.arc(32, 34, 14, 0.15 * Math.PI, 0.85 * Math.PI);
-  sctx.stroke();
+  sctx.font = '48px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
+  sctx.textAlign = 'center';
+  sctx.textBaseline = 'middle';
+  sctx.fillText('😊', 32, 32);
 
   const smileyTex = new THREE.CanvasTexture(smileyCanvas);
   const pMat = new THREE.PointsMaterial({
