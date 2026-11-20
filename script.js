@@ -185,7 +185,7 @@ function initScene() {
 
   // Moon in a fixed orbit
   const moonMat = new THREE.MeshStandardMaterial({ map: moonTex, color: 0xffffff, roughness: 0.95, metalness: 0.05 });
-  const moon = new THREE.Mesh(new THREE.SphereGeometry(0.4, 24, 16), moonMat);
+  const moon = new THREE.Mesh(new THREE.SphereGeometry(0.2, 24, 16), moonMat);
   scene.add(moon);
   window.__moon = moon;
 
@@ -242,8 +242,8 @@ function animate() {
   // Moon: fixed orbit, rotating at the same speed as the axes (0.5 rad/s on Y)
   if (moon) {
     const angle = t * 0.5;
-    const radius = 5;
-    moon.position.set(Math.cos(angle) * radius, 1.5 + Math.sin(t * 0.2) * 0.2, Math.sin(angle) * radius);
+    const radius = 2.2;
+    moon.position.set(Math.cos(angle) * radius, 0.8 + Math.sin(t * 0.2) * 0.1, Math.sin(angle) * radius);
     moon.rotation.y = angle;
   }
   // Flying saucer random flight
