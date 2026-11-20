@@ -52,7 +52,7 @@ function initScene() {
   scene.add(grid);
 
   // Particles
-  const pCount = reducedMotion ? 400 : 1200;
+  const pCount = reducedMotion ? 80 : 250;
   const pGeom = new THREE.BufferGeometry();
   const pPos = new Float32Array(pCount * 3);
   for (let i = 0; i < pCount; i++) {
@@ -75,9 +75,10 @@ function initScene() {
   const pMat = new THREE.PointsMaterial({
     map: smileyTex,
     color: 0xffffff,
-    size: 0.18,
+    size: 0.32,
     transparent: true,
-    alphaTest: 0.5,
+    opacity: 0.85,
+    alphaTest: 0.3,
     depthWrite: false,
     blending: THREE.AdditiveBlending
   });
