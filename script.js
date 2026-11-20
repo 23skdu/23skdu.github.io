@@ -66,10 +66,26 @@ function initScene() {
   const smileyCanvas = document.createElement('canvas');
   smileyCanvas.width = smileyCanvas.height = 64;
   const sctx = smileyCanvas.getContext('2d');
-  sctx.font = '48px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
-  sctx.textAlign = 'center';
-  sctx.textBaseline = 'middle';
-  sctx.fillText('😊', 32, 32);
+  // Yellow face
+  sctx.fillStyle = '#ffff00';
+  sctx.beginPath();
+  sctx.arc(32, 32, 30, 0, Math.PI * 2);
+  sctx.fill();
+  // Cut out eyes and smile so they are transparent (see-through)
+  sctx.globalCompositeOperation = 'destination-out';
+  sctx.fillStyle = 'rgba(0,0,0,1)';
+  sctx.beginPath();
+  sctx.arc(22, 26, 5, 0, Math.PI * 2);
+  sctx.fill();
+  sctx.beginPath();
+  sctx.arc(42, 26, 5, 0, Math.PI * 2);
+  sctx.fill();
+  sctx.lineWidth = 6;
+  sctx.strokeStyle = 'rgba(0,0,0,1)';
+  sctx.beginPath();
+  sctx.arc(32, 34, 15, 0.15 * Math.PI, 0.85 * Math.PI);
+  sctx.stroke();
+  sctx.globalCompositeOperation = 'source-over';
 
   const smileyTex = new THREE.CanvasTexture(smileyCanvas);
   const pMat = new THREE.PointsMaterial({
