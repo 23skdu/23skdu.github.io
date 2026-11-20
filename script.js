@@ -61,7 +61,7 @@ function initScene() {
     pPos[i * 3 + 2] = (Math.random() - 0.5) * 30;
   }
   pGeom.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  const pMat = new THREE.PointsMaterial({ color: 0x0080ff, size: 0.05, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
+  const pMat = new THREE.PointsMaterial({ color: 0xffff00, size: 0.06, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending });
   const points = new THREE.Points(pGeom, pMat);
   scene.add(points);
 
