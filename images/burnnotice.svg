@@ -6,5 +6,6 @@
     <line x1="182" y1="116" x2="226" y2="160"/>
   </g>
   <circle cx="148" cy="82" r="30" fill="#0d0d1a" stroke="#ff3b3b" stroke-width="2"/>
+  <text x="148" y="94" text-anchor="middle" font-size="34" font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif">👻</text>
   <text x="160" y="170" text-anchor="middle" font-family="monospace" font-size="12" fill="#8a8aa8">BurnNotice</text>
 </svg>
