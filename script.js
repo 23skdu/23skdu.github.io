@@ -518,18 +518,6 @@ async function boot() {
 
 boot();
 
-/* ---------- Theremin sound throughout the site ---------- */
-(function setupThereminSound() {
-  const snd = new Audio('/audio/alien-loading.mp3');
-  snd.loop = true;
-  snd.volume = 0.15;
-  const tryPlay = () => { snd.play().catch(() => {}); };
-  tryPlay();
-  ['click', 'keydown', 'touchstart'].forEach(evt => {
-    window.addEventListener(evt, tryPlay, { once: true });
-  });
-})();
-
 /* ---------- Auto-scroll through sections ---------- */
 (function setupAutoScroll() {
   const sectionIds = ['hero', 'about', 'special-projects', 'projects', 'contact'];
