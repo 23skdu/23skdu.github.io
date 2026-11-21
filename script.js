@@ -518,61 +518,50 @@ async function boot() {
 
 boot();
 
-/* ---------- Theremin loading sound during first panel ---------- */
+/* ---------- Theremin sound throughout the site ---------- */
 (function setupThereminSound() {
   let ctx = null;
-  let interval = null;
-  let stopped = false;
+  let started = false;
 
-  function playOnce() {
-    if (stopped) return;
-    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+  function start() {
+    if (started) return;
+    started = true;
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
     if (ctx.state === 'suspended') ctx.resume().catch(() => {});
-    const now = ctx.currentTime;
+
     const osc = ctx.createOscillator();
     const vib = ctx.createOscillator();
     const vibGain = ctx.createGain();
-    vib.frequency.value = 6.5;
-    vibGain.gain.value = 28;
-    vib.connect(vibGain).connect(osc.frequency);
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(520, now);
-    osc.frequency.linearRampToValueAtTime(700, now + 1.5);
-    osc.frequency.linearRampToValueAtTime(520, now + 3.0);
-
+    const drift = ctx.createOscillator();
+    const driftGain = ctx.createGain();
     const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(0.22, now + 0.2);
-    gain.gain.exponentialRampToValueAtTime(0.18, now + 2.7);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.0);
+
+    osc.type = 'sine';
+    osc.frequency.value = 520;
+
+    vib.type = 'sine';
+    vib.frequency.value = 6.5;
+    vibGain.gain.value = 24;
+    vib.connect(vibGain).connect(osc.frequency);
+
+    drift.type = 'sine';
+    drift.frequency.value = 0.18;
+    driftGain.gain.value = 55;
+    drift.connect(driftGain).connect(osc.frequency);
+
+    gain.gain.value = 0.10;
 
     osc.connect(gain).connect(ctx.destination);
-    osc.start(now);
-    osc.stop(now + 3.0);
-    vib.start(now);
-    vib.stop(now + 3.0);
+    osc.start();
+    vib.start();
+    drift.start();
   }
 
-  function stop() {
-    stopped = true;
-    if (interval) clearInterval(interval);
-    if (ctx) ctx.close().catch(() => {});
-  }
-
-  // Play immediately and loop a few times during the first panel
-  playOnce();
-  let count = 0;
-  interval = setInterval(() => {
-    if (stopped || count++ >= 5) { clearInterval(interval); return; }
-    playOnce();
-  }, 3000);
-
-  // Stop on interaction/navigation
+  // Start as soon as possible (may require interaction)
+  start();
   ['click', 'keydown', 'touchstart'].forEach(evt => {
-    window.addEventListener(evt, stop, { once: true });
+    window.addEventListener(evt, start, { once: true });
   });
-  // Also stop when auto-scroll moves away (after ~20s)
-  setTimeout(stop, 20000);
 })();
 
 /* ---------- Auto-scroll through sections ---------- */
