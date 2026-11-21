@@ -520,7 +520,8 @@ boot();
 
 /* ---------- Alien loading sound during first panel ---------- */
 (function setupAlienSound() {
-  const snd = new Audio('/audio/alien-loading.wav');
+  const snd = new Audio('/audio/alien-loading.mid');
+  snd.loop = true;
   snd.volume = 0.35;
   const tryPlay = () => { snd.currentTime = 0; snd.play().catch(() => {}); };
   // Attempt autoplay (may be blocked until interaction)
