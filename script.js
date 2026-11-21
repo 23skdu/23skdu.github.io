@@ -521,13 +521,11 @@ boot();
 /* ---------- Theremin sound throughout the site ---------- */
 (function setupThereminSound() {
   let ctx = null;
-  let started = false;
+  let nodesStarted = false;
 
-  function start() {
-    if (started) return;
-    started = true;
-    ctx = new (window.AudioContext || window.webkitAudioContext)();
-    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+  function buildNodes() {
+    if (nodesStarted) return;
+    nodesStarted = true;
 
     const osc = ctx.createOscillator();
     const vib = ctx.createOscillator();
@@ -557,10 +555,22 @@ boot();
     drift.start();
   }
 
-  // Start as soon as possible (may require interaction)
-  start();
+  function tryStart() {
+    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (ctx.state === 'suspended') {
+      ctx.resume().then(() => {
+        if (ctx.state === 'running') buildNodes();
+      }).catch(() => {});
+    } else {
+      buildNodes();
+    }
+  }
+
+  // Attempt immediately
+  tryStart();
+  // Retry on any interaction (autoplay policy)
   ['click', 'keydown', 'touchstart'].forEach(evt => {
-    window.addEventListener(evt, start, { once: true });
+    window.addEventListener(evt, tryStart);
   });
 })();
 
