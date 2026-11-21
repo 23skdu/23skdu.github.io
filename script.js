@@ -518,18 +518,61 @@ async function boot() {
 
 boot();
 
-/* ---------- Alien loading sound during first panel ---------- */
-(function setupAlienSound() {
-  const snd = new Audio('/audio/alien-loading.mid');
-  snd.loop = true;
-  snd.volume = 0.35;
-  const tryPlay = () => { snd.currentTime = 0; snd.play().catch(() => {}); };
-  // Attempt autoplay (may be blocked until interaction)
-  tryPlay();
-  // Also play on first user interaction in case autoplay was blocked
-  const onInteract = () => { tryPlay(); window.removeEventListener('click', onInteract); window.removeEventListener('keydown', onInteract); };
-  window.addEventListener('click', onInteract, { once: true });
-  window.addEventListener('keydown', onInteract, { once: true });
+/* ---------- Theremin loading sound during first panel ---------- */
+(function setupThereminSound() {
+  let ctx = null;
+  let interval = null;
+  let stopped = false;
+
+  function playOnce() {
+    if (stopped) return;
+    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const vib = ctx.createOscillator();
+    const vibGain = ctx.createGain();
+    vib.frequency.value = 6.5;
+    vibGain.gain.value = 28;
+    vib.connect(vibGain).connect(osc.frequency);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(520, now);
+    osc.frequency.linearRampToValueAtTime(700, now + 1.5);
+    osc.frequency.linearRampToValueAtTime(520, now + 3.0);
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.22, now + 0.2);
+    gain.gain.exponentialRampToValueAtTime(0.18, now + 2.7);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.0);
+
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 3.0);
+    vib.start(now);
+    vib.stop(now + 3.0);
+  }
+
+  function stop() {
+    stopped = true;
+    if (interval) clearInterval(interval);
+    if (ctx) ctx.close().catch(() => {});
+  }
+
+  // Play immediately and loop a few times during the first panel
+  playOnce();
+  let count = 0;
+  interval = setInterval(() => {
+    if (stopped || count++ >= 5) { clearInterval(interval); return; }
+    playOnce();
+  }, 3000);
+
+  // Stop on interaction/navigation
+  ['click', 'keydown', 'touchstart'].forEach(evt => {
+    window.addEventListener(evt, stop, { once: true });
+  });
+  // Also stop when auto-scroll moves away (after ~20s)
+  setTimeout(stop, 20000);
 })();
 
 /* ---------- Auto-scroll through sections ---------- */
