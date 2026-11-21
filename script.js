@@ -520,66 +520,13 @@ boot();
 
 /* ---------- Theremin sound throughout the site ---------- */
 (function setupThereminSound() {
-  let ctx = null;
-  let nodesStarted = false;
-
-  function buildNodes() {
-    if (nodesStarted) return;
-    nodesStarted = true;
-
-    const osc = ctx.createOscillator();
-    const vib = ctx.createOscillator();
-    const vibGain = ctx.createGain();
-    const drift = ctx.createOscillator();
-    const driftGain = ctx.createGain();
-    const gain = ctx.createGain();
-
-    osc.type = 'sine';
-    osc.frequency.value = 520;
-
-    vib.type = 'sine';
-    vib.frequency.value = 5.5;
-    vibGain.gain.value = 18;
-    vib.connect(vibGain).connect(osc.frequency);
-
-    drift.type = 'sine';
-    drift.frequency.value = 0.12;
-    driftGain.gain.value = 40;
-    drift.connect(driftGain).connect(osc.frequency);
-
-    // Gentle tremolo so it doesn't sound like a flat dial tone
-    const trem = ctx.createOscillator();
-    const tremGain = ctx.createGain();
-    trem.type = 'sine';
-    trem.frequency.value = 3.2;
-    tremGain.gain.value = 0.03;
-    trem.connect(tremGain).connect(gain.gain);
-
-    gain.gain.value = 0.05;
-
-    osc.connect(gain).connect(ctx.destination);
-    osc.start();
-    vib.start();
-    drift.start();
-    trem.start();
-  }
-
-  function tryStart() {
-    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
-    if (ctx.state === 'suspended') {
-      ctx.resume().then(() => {
-        if (ctx.state === 'running') buildNodes();
-      }).catch(() => {});
-    } else {
-      buildNodes();
-    }
-  }
-
-  // Attempt immediately
-  tryStart();
-  // Retry on any interaction (autoplay policy)
+  const snd = new Audio('/audio/alien-loading.wav');
+  snd.loop = true;
+  snd.volume = 0.15;
+  const tryPlay = () => { snd.play().catch(() => {}); };
+  tryPlay();
   ['click', 'keydown', 'touchstart'].forEach(evt => {
-    window.addEventListener(evt, tryStart);
+    window.addEventListener(evt, tryPlay, { once: true });
   });
 })();
 
