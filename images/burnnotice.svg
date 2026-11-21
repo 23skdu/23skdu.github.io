@@ -7,5 +7,10 @@
   </g>
   <circle cx="148" cy="82" r="30" fill="#0d0d1a" stroke="#ff3b3b" stroke-width="2"/>
   <text x="148" y="94" text-anchor="middle" font-size="34" font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif">👻</text>
+  <g stroke="#ff3b3b" stroke-width="2" fill="none">
+    <line x1="148" y1="50" x2="148" y2="114"/>
+    <line x1="116" y1="82" x2="180" y2="82"/>
+    <circle cx="148" cy="82" r="14"/>
+  </g>
   <text x="160" y="170" text-anchor="middle" font-family="monospace" font-size="12" fill="#8a8aa8">BurnNotice</text>
 </svg>
