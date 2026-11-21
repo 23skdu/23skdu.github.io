@@ -538,21 +538,30 @@ boot();
     osc.frequency.value = 520;
 
     vib.type = 'sine';
-    vib.frequency.value = 6.5;
-    vibGain.gain.value = 24;
+    vib.frequency.value = 5.5;
+    vibGain.gain.value = 18;
     vib.connect(vibGain).connect(osc.frequency);
 
     drift.type = 'sine';
-    drift.frequency.value = 0.18;
-    driftGain.gain.value = 55;
+    drift.frequency.value = 0.12;
+    driftGain.gain.value = 40;
     drift.connect(driftGain).connect(osc.frequency);
 
-    gain.gain.value = 0.10;
+    // Gentle tremolo so it doesn't sound like a flat dial tone
+    const trem = ctx.createOscillator();
+    const tremGain = ctx.createGain();
+    trem.type = 'sine';
+    trem.frequency.value = 3.2;
+    tremGain.gain.value = 0.03;
+    trem.connect(tremGain).connect(gain.gain);
+
+    gain.gain.value = 0.05;
 
     osc.connect(gain).connect(ctx.destination);
     osc.start();
     vib.start();
     drift.start();
+    trem.start();
   }
 
   function tryStart() {
