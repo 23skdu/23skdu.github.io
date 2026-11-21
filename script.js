@@ -518,6 +518,19 @@ async function boot() {
 
 boot();
 
+/* ---------- Alien loading sound during first panel ---------- */
+(function setupAlienSound() {
+  const snd = new Audio('/audio/alien-loading.wav');
+  snd.volume = 0.35;
+  const tryPlay = () => { snd.currentTime = 0; snd.play().catch(() => {}); };
+  // Attempt autoplay (may be blocked until interaction)
+  tryPlay();
+  // Also play on first user interaction in case autoplay was blocked
+  const onInteract = () => { tryPlay(); window.removeEventListener('click', onInteract); window.removeEventListener('keydown', onInteract); };
+  window.addEventListener('click', onInteract, { once: true });
+  window.addEventListener('keydown', onInteract, { once: true });
+})();
+
 /* ---------- Auto-scroll through sections ---------- */
 (function setupAutoScroll() {
   const sectionIds = ['hero', 'about', 'special-projects', 'projects', 'contact'];
