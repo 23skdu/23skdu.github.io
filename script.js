@@ -520,7 +520,7 @@ boot();
 
 /* ---------- Theremin sound throughout the site ---------- */
 (function setupThereminSound() {
-  const snd = new Audio('/audio/alien-loading.wav');
+  const snd = new Audio('/audio/alien-loading.mp3');
   snd.loop = true;
   snd.volume = 0.15;
   const tryPlay = () => { snd.play().catch(() => {}); };
