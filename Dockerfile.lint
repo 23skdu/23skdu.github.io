@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:26-alpine
 RUN apk add --no-cache libxml2-utils jq bash
 RUN npm install -g htmlhint stylelint stylelint-config-standard stylelint-config-recommended eslint jsonlint
 WORKDIR /work
