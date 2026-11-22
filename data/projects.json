@@ -26,12 +26,65 @@
       "vector-database",
       "vectors"
     ],
-    "pushed_at": "2026-11-22T08:00:53Z",
+    "pushed_at": "2026-11-22T23:16:04Z",
     "updated_at": "2026-11-12T06:01:07Z",
     "created_at": "2025-12-13T06:29:53Z",
     "html_url": "https://github.com/23skdu/longbow",
     "homepage": "https://github.com/23skdu/longbow",
-    "size": 72906
+    "size": 73940
+  },
+  {
+    "name": "quarrel-rs",
+    "description": "Apache Arrow based inference engine in Rust",
+    "language": "Rust",
+    "stars": 0,
+    "forks": 0,
+    "topics": [
+      "api",
+      "inference",
+      "inference-engine",
+      "rust"
+    ],
+    "pushed_at": "2026-11-22T22:55:40Z",
+    "updated_at": "2026-11-22T20:35:33Z",
+    "created_at": "2026-11-22T20:11:57Z",
+    "html_url": "https://github.com/23skdu/quarrel-rs",
+    "homepage": "",
+    "size": 327
+  },
+  {
+    "name": "glogs_wordcloud",
+    "description": "reading events from Google Cloud Logging, to analyze for word counts and frequencies",
+    "language": "Python",
+    "stars": 1,
+    "forks": 0,
+    "topics": [],
+    "pushed_at": "2026-11-22T21:13:13Z",
+    "updated_at": "2026-11-19T19:38:32Z",
+    "created_at": "2025-03-26T20:14:16Z",
+    "html_url": "https://github.com/23skdu/glogs_wordcloud",
+    "homepage": "",
+    "size": 654
+  },
+  {
+    "name": "nrsak-py",
+    "description": "New Relic Swiss Army Knife ",
+    "language": "Python",
+    "stars": 2,
+    "forks": 0,
+    "topics": [
+      "apm",
+      "monitoring",
+      "newrelic",
+      "newrelic-api",
+      "observability"
+    ],
+    "pushed_at": "2026-11-22T16:05:16Z",
+    "updated_at": "2026-11-16T01:24:34Z",
+    "created_at": "2024-03-05T23:10:37Z",
+    "html_url": "https://github.com/23skdu/nrsak-py",
+    "homepage": "",
+    "size": 41
   },
   {
     "name": "vagrant_puppetdevstack",
@@ -113,40 +166,6 @@
     "html_url": "https://github.com/23skdu/BurnNotice",
     "homepage": "",
     "size": 1426
-  },
-  {
-    "name": "glogs_wordcloud",
-    "description": "reading events from Google Cloud Logging, to analyze for word counts and frequencies",
-    "language": "Python",
-    "stars": 1,
-    "forks": 0,
-    "topics": [],
-    "pushed_at": "2026-11-22T05:24:04Z",
-    "updated_at": "2026-11-19T19:38:32Z",
-    "created_at": "2025-03-26T20:14:16Z",
-    "html_url": "https://github.com/23skdu/glogs_wordcloud",
-    "homepage": "",
-    "size": 650
-  },
-  {
-    "name": "nrsak-py",
-    "description": "New Relic Swiss Army Knife ",
-    "language": "Python",
-    "stars": 2,
-    "forks": 0,
-    "topics": [
-      "apm",
-      "monitoring",
-      "newrelic",
-      "newrelic-api",
-      "observability"
-    ],
-    "pushed_at": "2026-11-22T05:23:35Z",
-    "updated_at": "2026-11-16T01:24:34Z",
-    "created_at": "2024-03-05T23:10:37Z",
-    "html_url": "https://github.com/23skdu/nrsak-py",
-    "homepage": "",
-    "size": 54
   },
   {
     "name": "ShaderCandy",
