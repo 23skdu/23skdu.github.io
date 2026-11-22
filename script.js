@@ -350,7 +350,7 @@ async function firstCommitDate(repo) {
 }
 
 async function loadProjects() {
-  const cacheKey = 'skdu_repos_v6';
+  const cacheKey = 'skdu_repos_v7';
   const cached = sessionStorage.getItem(cacheKey);
   if (cached) {
     try { return JSON.parse(cached); } catch (e) {}
@@ -396,7 +396,7 @@ let activeFilter = 'All';
 
 function langColor(lang) {
   const map = {
-    Go:'#00add8', Python:'#3776ab', Rust:'#dea584', 'C++':'#f34b7d',
+    Go:'#00add8', Python:'#3776ab', 'C++':'#f34b7d',
     TypeScript:'#3178c6', Java:'#b07219', HCL:'#844fba', Perl:'#0298c3',
     Shell:'#89e051', Makefile:'#427819', Dockerfile:'#384d54', Other:'#8a8aa8'
   };

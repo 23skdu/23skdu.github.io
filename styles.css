@@ -142,7 +142,6 @@ h1{font-size:clamp(3rem,12vw,8rem);font-weight:900;margin:0;line-height:1;letter
 .lang-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:.3rem;vertical-align:middle}
 .lang-Go{background:#00add8}
 .lang-Python{background:#3776ab}
-.lang-Rust{background:#dea584}
 .lang-C++{background:#f34b7d}
 .lang-TypeScript{background:#3178c6}
 .lang-Java{background:#b07219}
