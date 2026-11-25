@@ -33,3 +33,7 @@ first run.
 ## Deploy
 
 Push to `main`; GitHub Pages publishes automatically (`.nojekyll` disables Jekyll processing).
+
+## License
+
+This project is released into the public domain under the [Unlicense](https://unlicense.org). See [LICENSE](LICENSE) for details.
