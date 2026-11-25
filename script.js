@@ -101,8 +101,9 @@ function initScene() {
   const points = new THREE.Points(pGeom, pMat);
   scene.add(points);
 
-  // Floating objects
+  // Floating objects (scaled down slightly; the saucer below keeps its size)
   const objs = [];
+  const SHAPE_SCALE = 0.85;
   const mk = (geom, color, pos) => {
     const mat = new THREE.MeshStandardMaterial({
       color, emissive: color, emissiveIntensity: 0.4,
@@ -110,6 +111,7 @@ function initScene() {
     });
     const m = new THREE.Mesh(geom, mat);
     m.position.set(...pos);
+    m.scale.setScalar(SHAPE_SCALE);
     scene.add(m);
     objs.push(m);
     return m;
