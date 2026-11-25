@@ -6,63 +6,98 @@
     "stars": 1,
     "forks": 0,
     "topics": [],
-    "pushed_at": "2026-11-25T00:45:40Z",
+    "pushed_at": "2026-11-25T16:11:39Z",
     "updated_at": "2026-11-23T08:53:38Z",
     "created_at": "2026-11-23T07:03:48Z",
     "html_url": "https://github.com/23skdu/BroWarz",
     "homepage": "",
-    "size": 3163
+    "size": 8343
   },
   {
-    "name": "CBOR-tools",
-    "description": "RFC8949 Compressed Binary Object Representation (CBOR) tools",
+    "name": "vagrant_puppetdevstack",
+    "description": "Vagrant Puppet Stack ",
+    "language": "Shell",
+    "stars": 1,
+    "forks": 0,
+    "topics": [
+      "puppet",
+      "vagrant",
+      "vagrantfile"
+    ],
+    "pushed_at": "2026-11-25T15:45:22Z",
+    "updated_at": "2026-11-20T06:25:14Z",
+    "created_at": "2016-09-17T08:29:42Z",
+    "html_url": "https://github.com/23skdu/vagrant_puppetdevstack",
+    "homepage": "",
+    "size": 65
+  },
+  {
+    "name": "terraform_ast",
+    "description": "Abstract Syntax Tree (AST) checker for opinionated terraform wrappers ",
+    "language": "Go",
+    "stars": 1,
+    "forks": 0,
+    "topics": [
+      "ast",
+      "code-analyzer",
+      "code-quality",
+      "eks",
+      "gke",
+      "terraform",
+      "terraform-aws",
+      "terraform-module",
+      "terraform-modules",
+      "terratest"
+    ],
+    "pushed_at": "2026-11-25T07:30:14Z",
+    "updated_at": "2026-11-05T22:16:27Z",
+    "created_at": "2026-10-08T05:06:17Z",
+    "html_url": "https://github.com/23skdu/terraform_ast",
+    "homepage": "",
+    "size": 1139
+  },
+  {
+    "name": "RaceToDeadEnd",
+    "description": "because i wanted to make Spy Hunter but i don't want to be sued",
+    "language": "GDScript",
+    "stars": 1,
+    "forks": 0,
+    "topics": [
+      "apocalypse",
+      "games",
+      "godot",
+      "godot-game",
+      "isometric-game",
+      "isometric-graphics",
+      "racing-game",
+      "science-fiction"
+    ],
+    "pushed_at": "2026-11-25T07:12:34Z",
+    "updated_at": "2026-11-16T01:22:52Z",
+    "created_at": "2026-05-19T08:40:28Z",
+    "html_url": "https://github.com/23skdu/RaceToDeadEnd",
+    "homepage": "",
+    "size": 57769
+  },
+  {
+    "name": "longbow-quarrel",
+    "description": "Quarrel is a Go inference engine",
     "language": "Go",
     "stars": 1,
     "forks": 0,
     "topics": [],
-    "pushed_at": "2026-11-25T00:10:49Z",
-    "updated_at": "2026-11-20T06:01:28Z",
-    "created_at": "2023-12-22T18:03:27Z",
-    "html_url": "https://github.com/23skdu/CBOR-tools",
+    "pushed_at": "2026-11-25T07:11:03Z",
+    "updated_at": "2026-11-12T06:34:22Z",
+    "created_at": "2025-12-27T05:08:51Z",
+    "html_url": "https://github.com/23skdu/longbow-quarrel",
     "homepage": "",
-    "size": 72
-  },
-  {
-    "name": "glogs_wordcloud",
-    "description": "reading events from Google Cloud Logging, to analyze for word counts and frequencies",
-    "language": "Python",
-    "stars": 1,
-    "forks": 0,
-    "topics": [],
-    "pushed_at": "2026-11-25T00:09:57Z",
-    "updated_at": "2026-11-19T19:38:32Z",
-    "created_at": "2025-03-26T20:14:16Z",
-    "html_url": "https://github.com/23skdu/glogs_wordcloud",
-    "homepage": "",
-    "size": 659
-  },
-  {
-    "name": "gcloud_logs_anomaly_detection",
-    "description": "Machine Learning  tools to find anomalies in Google Cloud Logging events",
-    "language": "Python",
-    "stars": 1,
-    "forks": 0,
-    "topics": [
-      "machine-learning",
-      "observability"
-    ],
-    "pushed_at": "2026-11-25T00:07:14Z",
-    "updated_at": "2026-11-10T10:26:00Z",
-    "created_at": "2025-04-10T20:45:38Z",
-    "html_url": "https://github.com/23skdu/gcloud_logs_anomaly_detection",
-    "homepage": "",
-    "size": 577
+    "size": 17332
   },
   {
     "name": "longbow",
     "description": "Apache Arrow Flight clustered vector engine for high throughput Agent memory sharing ",
     "language": "Go",
-    "stars": 14,
+    "stars": 13,
     "forks": 1,
     "topics": [
       "agentic-ai",
@@ -85,123 +120,40 @@
       "vector-database",
       "vectors"
     ],
-    "pushed_at": "2026-11-25T00:05:59Z",
-    "updated_at": "2026-11-12T06:01:07Z",
+    "pushed_at": "2026-11-25T07:11:00Z",
+    "updated_at": "2026-11-25T09:25:41Z",
     "created_at": "2025-12-13T06:29:53Z",
     "html_url": "https://github.com/23skdu/longbow",
     "homepage": "https://github.com/23skdu/longbow",
-    "size": 76467
+    "size": 76468
   },
   {
-    "name": "quarrel-rs",
-    "description": "Apache Arrow based inference engine in Rust",
-    "language": "Rust",
-    "stars": 1,
-    "forks": 0,
-    "topics": [
-      "api",
-      "inference",
-      "inference-engine",
-      "rust"
-    ],
-    "pushed_at": "2026-11-24T18:57:37Z",
-    "updated_at": "2026-11-23T03:46:51Z",
-    "created_at": "2026-11-22T20:11:57Z",
-    "html_url": "https://github.com/23skdu/quarrel-rs",
-    "homepage": "",
-    "size": 732
-  },
-  {
-    "name": "nrsak-py",
-    "description": "New Relic Swiss Army Knife ",
-    "language": "Python",
-    "stars": 2,
-    "forks": 0,
-    "topics": [
-      "apm",
-      "monitoring",
-      "newrelic",
-      "newrelic-api",
-      "observability"
-    ],
-    "pushed_at": "2026-11-24T18:57:04Z",
-    "updated_at": "2026-11-16T01:24:34Z",
-    "created_at": "2024-03-05T23:10:37Z",
-    "html_url": "https://github.com/23skdu/nrsak-py",
-    "homepage": "",
-    "size": 42
-  },
-  {
-    "name": "longbow-fletcher",
-    "description": "Vector Engine for converting text to vectors for Longbow",
-    "language": "Python",
-    "stars": 1,
-    "forks": 0,
-    "topics": [
-      "apache-arrow",
-      "embeddings",
-      "inference-engine"
-    ],
-    "pushed_at": "2026-11-24T18:57:02Z",
-    "updated_at": "2026-11-16T01:24:00Z",
-    "created_at": "2025-12-26T07:24:51Z",
-    "html_url": "https://github.com/23skdu/longbow-fletcher",
-    "homepage": "",
-    "size": 70045
-  },
-  {
-    "name": "jupyter-template",
-    "description": "Jupyter Notebook template",
-    "language": "Makefile",
-    "stars": 3,
-    "forks": 0,
-    "topics": [
-      "documentation",
-      "jupyter-notebook"
-    ],
-    "pushed_at": "2026-11-24T18:56:54Z",
-    "updated_at": "2026-11-10T08:29:02Z",
-    "created_at": "2023-12-17T08:46:58Z",
-    "html_url": "https://github.com/23skdu/jupyter-template",
-    "homepage": "",
-    "size": 109
-  },
-  {
-    "name": "RaceToDeadEnd",
-    "description": "because i wanted to make Spy Hunter but i don't want to be sued",
-    "language": "GDScript",
-    "stars": 1,
-    "forks": 0,
-    "topics": [
-      "apocalypse",
-      "games",
-      "godot",
-      "godot-game",
-      "isometric-game",
-      "isometric-graphics",
-      "racing-game",
-      "science-fiction"
-    ],
-    "pushed_at": "2026-11-24T18:34:12Z",
-    "updated_at": "2026-11-16T01:22:52Z",
-    "created_at": "2026-05-19T08:40:28Z",
-    "html_url": "https://github.com/23skdu/RaceToDeadEnd",
-    "homepage": "",
-    "size": 57651
-  },
-  {
-    "name": "aws-eks-k8s-terraform-template",
-    "description": "aws-eks-k8s-terraform-template",
-    "language": "HCL",
+    "name": "CBOR-tools",
+    "description": "RFC8949 Compressed Binary Object Representation (CBOR) tools",
+    "language": "Go",
     "stars": 1,
     "forks": 0,
     "topics": [],
-    "pushed_at": "2026-11-24T18:31:47Z",
-    "updated_at": "2026-10-10T17:21:29Z",
-    "created_at": "2026-09-27T19:22:10Z",
-    "html_url": "https://github.com/23skdu/aws-eks-k8s-terraform-template",
+    "pushed_at": "2026-11-25T07:10:29Z",
+    "updated_at": "2026-11-20T06:01:28Z",
+    "created_at": "2023-12-22T18:03:27Z",
+    "html_url": "https://github.com/23skdu/CBOR-tools",
     "homepage": "",
-    "size": 141
+    "size": 71
+  },
+  {
+    "name": "Terraform-Helm-Kubernetes-on-Virtualbox",
+    "description": "Virtualbox provider for Terraform, to stand up a mini Kubernetes cluster",
+    "language": "HCL",
+    "stars": 2,
+    "forks": 0,
+    "topics": [],
+    "pushed_at": "2026-11-25T07:09:03Z",
+    "updated_at": "2026-11-20T06:25:07Z",
+    "created_at": "2019-09-19T16:39:26Z",
+    "html_url": "https://github.com/23skdu/Terraform-Helm-Kubernetes-on-Virtualbox",
+    "homepage": "",
+    "size": 23
   },
   {
     "name": "STONKYSTONKS",
@@ -210,12 +162,12 @@
     "stars": 1,
     "forks": 0,
     "topics": [],
-    "pushed_at": "2026-11-24T18:31:32Z",
+    "pushed_at": "2026-11-25T07:08:59Z",
     "updated_at": "2026-06-11T08:45:25Z",
     "created_at": "2024-03-06T20:06:20Z",
     "html_url": "https://github.com/23skdu/STONKYSTONKS",
     "homepage": "",
-    "size": 66
+    "size": 67
   },
   {
     "name": "ShaderCandy",
@@ -234,26 +186,153 @@
       "vulcan",
       "wayland"
     ],
-    "pushed_at": "2026-11-24T18:31:23Z",
+    "pushed_at": "2026-11-25T07:08:57Z",
     "updated_at": "2026-11-22T03:45:35Z",
     "created_at": "2026-02-11T03:19:39Z",
     "html_url": "https://github.com/23skdu/ShaderCandy",
     "homepage": "",
-    "size": 5705
+    "size": 5707
   },
   {
-    "name": "longbow-quarrel",
-    "description": "Quarrel is a Go inference engine",
-    "language": "Go",
+    "name": "gcloud_logs_anomaly_detection",
+    "description": "Machine Learning  tools to find anomalies in Google Cloud Logging events",
+    "language": "Python",
     "stars": 1,
     "forks": 0,
-    "topics": [],
-    "pushed_at": "2026-11-24T18:31:08Z",
-    "updated_at": "2026-11-12T06:34:22Z",
-    "created_at": "2025-12-27T05:08:51Z",
-    "html_url": "https://github.com/23skdu/longbow-quarrel",
+    "topics": [
+      "machine-learning",
+      "observability"
+    ],
+    "pushed_at": "2026-11-25T07:08:48Z",
+    "updated_at": "2026-11-10T10:26:00Z",
+    "created_at": "2025-04-10T20:45:38Z",
+    "html_url": "https://github.com/23skdu/gcloud_logs_anomaly_detection",
     "homepage": "",
-    "size": 17327
+    "size": 579
+  },
+  {
+    "name": "quarrel-rs",
+    "description": "Apache Arrow based inference engine in Rust",
+    "language": "Rust",
+    "stars": 1,
+    "forks": 0,
+    "topics": [
+      "api",
+      "inference",
+      "inference-engine",
+      "rust"
+    ],
+    "pushed_at": "2026-11-25T07:05:56Z",
+    "updated_at": "2026-11-23T03:46:51Z",
+    "created_at": "2026-11-22T20:11:57Z",
+    "html_url": "https://github.com/23skdu/quarrel-rs",
+    "homepage": "",
+    "size": 735
+  },
+  {
+    "name": "nrsak-py",
+    "description": "New Relic Swiss Army Knife ",
+    "language": "Python",
+    "stars": 2,
+    "forks": 0,
+    "topics": [
+      "apm",
+      "monitoring",
+      "newrelic",
+      "newrelic-api",
+      "observability"
+    ],
+    "pushed_at": "2026-11-25T07:05:48Z",
+    "updated_at": "2026-11-16T01:24:34Z",
+    "created_at": "2024-03-05T23:10:37Z",
+    "html_url": "https://github.com/23skdu/nrsak-py",
+    "homepage": "",
+    "size": 43
+  },
+  {
+    "name": "longbow-fletcher",
+    "description": "Vector Engine for converting text to vectors for Longbow",
+    "language": "Python",
+    "stars": 1,
+    "forks": 0,
+    "topics": [
+      "apache-arrow",
+      "embeddings",
+      "inference-engine"
+    ],
+    "pushed_at": "2026-11-25T07:05:04Z",
+    "updated_at": "2026-11-16T01:24:00Z",
+    "created_at": "2025-12-26T07:24:51Z",
+    "html_url": "https://github.com/23skdu/longbow-fletcher",
+    "homepage": "",
+    "size": 70047
+  },
+  {
+    "name": "py-tool-template",
+    "description": "Base Scaffolding Pattern for python CLI tools",
+    "language": "Python",
+    "stars": 1,
+    "forks": 0,
+    "topics": [
+      "automation",
+      "cli",
+      "python"
+    ],
+    "pushed_at": "2026-11-25T07:04:56Z",
+    "updated_at": "2023-12-17T09:22:42Z",
+    "created_at": "2023-12-17T06:21:33Z",
+    "html_url": "https://github.com/23skdu/py-tool-template",
+    "homepage": "",
+    "size": 6
+  },
+  {
+    "name": "perl-tool-template",
+    "description": "Base Scaffolding Pattern for perl CLI tools ",
+    "language": "Perl",
+    "stars": 1,
+    "forks": 0,
+    "topics": [
+      "automation",
+      "cli",
+      "perl"
+    ],
+    "pushed_at": "2026-11-25T07:04:53Z",
+    "updated_at": "2023-12-17T09:04:39Z",
+    "created_at": "2023-12-16T04:35:23Z",
+    "html_url": "https://github.com/23skdu/perl-tool-template",
+    "homepage": "",
+    "size": 5
+  },
+  {
+    "name": "Centos7.7.1908-Packer-Vagrant",
+    "description": "Centos 7.7.1908 Packer files, Vagrantfile for DevVM: nodejs, ruby, perl, python unit testing",
+    "language": "Perl",
+    "stars": 1,
+    "forks": 1,
+    "topics": [],
+    "pushed_at": "2026-11-25T07:04:51Z",
+    "updated_at": "2023-03-05T00:00:25Z",
+    "created_at": "2019-09-17T16:58:05Z",
+    "html_url": "https://github.com/23skdu/Centos7.7.1908-Packer-Vagrant",
+    "homepage": "",
+    "size": 16
+  },
+  {
+    "name": "jupyter-template",
+    "description": "Jupyter Notebook template",
+    "language": "Makefile",
+    "stars": 2,
+    "forks": 0,
+    "topics": [
+      "documentation",
+      "jupyter-notebook"
+    ],
+    "pushed_at": "2026-11-25T07:04:43Z",
+    "updated_at": "2026-11-25T09:13:17Z",
+    "created_at": "2023-12-17T08:46:58Z",
+    "html_url": "https://github.com/23skdu/jupyter-template",
+    "homepage": "",
+    "size": 118
   },
   {
     "name": "gosqueal",
@@ -274,26 +353,40 @@
       "vector-database",
       "vector-search"
     ],
-    "pushed_at": "2026-11-24T18:30:51Z",
+    "pushed_at": "2026-11-25T07:04:41Z",
     "updated_at": "2026-10-02T03:23:40Z",
     "created_at": "2023-12-20T19:35:53Z",
     "html_url": "https://github.com/23skdu/gosqueal",
     "homepage": "",
-    "size": 5169
+    "size": 5170
+  },
+  {
+    "name": "glogs_wordcloud",
+    "description": "reading events from Google Cloud Logging, to analyze for word counts and frequencies",
+    "language": "Python",
+    "stars": 1,
+    "forks": 0,
+    "topics": [],
+    "pushed_at": "2026-11-25T07:04:05Z",
+    "updated_at": "2026-11-19T19:38:32Z",
+    "created_at": "2025-03-26T20:14:16Z",
+    "html_url": "https://github.com/23skdu/glogs_wordcloud",
+    "homepage": "",
+    "size": 660
   },
   {
     "name": "gke-k8s-terraform-template",
     "description": "skeleton for Google k8s cluster and GCS bucket for TF state",
     "language": "Go",
-    "stars": 2,
+    "stars": 1,
     "forks": 0,
     "topics": [],
-    "pushed_at": "2026-11-24T18:30:47Z",
-    "updated_at": "2026-11-10T08:28:59Z",
+    "pushed_at": "2026-11-25T07:04:02Z",
+    "updated_at": "2026-11-25T09:13:18Z",
     "created_at": "2023-12-20T00:45:20Z",
     "html_url": "https://github.com/23skdu/gke-k8s-terraform-template",
     "homepage": "",
-    "size": 270
+    "size": 274
   },
   {
     "name": "emlgo",
@@ -311,12 +404,12 @@
       "theoretical-math",
       "theoretical-physics"
     ],
-    "pushed_at": "2026-11-24T18:30:43Z",
+    "pushed_at": "2026-11-25T07:03:58Z",
     "updated_at": "2026-11-16T01:25:30Z",
     "created_at": "2026-04-30T05:43:52Z",
     "html_url": "https://github.com/23skdu/emlgo",
     "homepage": "",
-    "size": 4780
+    "size": 4781
   },
   {
     "name": "BurnNotice",
@@ -343,118 +436,25 @@
       "steering-behaviors",
       "tools"
     ],
-    "pushed_at": "2026-11-24T18:30:34Z",
+    "pushed_at": "2026-11-25T07:03:38Z",
     "updated_at": "2026-11-13T01:07:23Z",
     "created_at": "2026-05-18T20:56:25Z",
     "html_url": "https://github.com/23skdu/BurnNotice",
     "homepage": "",
-    "size": 1428
+    "size": 1436
   },
   {
-    "name": "vagrant_puppetdevstack",
-    "description": "Vagrant Puppet Stack ",
-    "language": "Shell",
-    "stars": 1,
-    "forks": 0,
-    "topics": [
-      "puppet",
-      "vagrant",
-      "vagrantfile"
-    ],
-    "pushed_at": "2026-11-22T07:08:32Z",
-    "updated_at": "2026-11-20T06:25:14Z",
-    "created_at": "2016-09-17T08:29:42Z",
-    "html_url": "https://github.com/23skdu/vagrant_puppetdevstack",
-    "homepage": "",
-    "size": 62
-  },
-  {
-    "name": "Terraform-Helm-Kubernetes-on-Virtualbox",
-    "description": "Virtualbox provider for Terraform, to stand up a mini Kubernetes cluster",
+    "name": "aws-eks-k8s-terraform-template",
+    "description": "aws-eks-k8s-terraform-template",
     "language": "HCL",
-    "stars": 2,
+    "stars": 1,
     "forks": 0,
     "topics": [],
-    "pushed_at": "2026-11-22T05:14:50Z",
-    "updated_at": "2026-11-20T06:25:07Z",
-    "created_at": "2019-09-19T16:39:26Z",
-    "html_url": "https://github.com/23skdu/Terraform-Helm-Kubernetes-on-Virtualbox",
+    "pushed_at": "2026-11-25T06:59:46Z",
+    "updated_at": "2026-10-10T17:21:29Z",
+    "created_at": "2026-09-27T19:22:10Z",
+    "html_url": "https://github.com/23skdu/aws-eks-k8s-terraform-template",
     "homepage": "",
-    "size": 22
-  },
-  {
-    "name": "terraform_ast",
-    "description": "Abstract Syntax Tree (AST) checker for opinionated terraform wrappers ",
-    "language": "Go",
-    "stars": 1,
-    "forks": 0,
-    "topics": [
-      "ast",
-      "code-analyzer",
-      "code-quality",
-      "eks",
-      "gke",
-      "terraform",
-      "terraform-aws",
-      "terraform-module",
-      "terraform-modules",
-      "terratest"
-    ],
-    "pushed_at": "2026-11-22T05:12:42Z",
-    "updated_at": "2026-11-05T22:16:27Z",
-    "created_at": "2026-10-08T05:06:17Z",
-    "html_url": "https://github.com/23skdu/terraform_ast",
-    "homepage": "",
-    "size": 1126
-  },
-  {
-    "name": "perl-tool-template",
-    "description": "Base Scaffolding Pattern for perl CLI tools ",
-    "language": "Perl",
-    "stars": 1,
-    "forks": 0,
-    "topics": [
-      "automation",
-      "cli",
-      "perl"
-    ],
-    "pushed_at": "2024-02-11T21:30:28Z",
-    "updated_at": "2023-12-17T09:04:39Z",
-    "created_at": "2023-12-16T04:35:23Z",
-    "html_url": "https://github.com/23skdu/perl-tool-template",
-    "homepage": "",
-    "size": 4
-  },
-  {
-    "name": "py-tool-template",
-    "description": "Base Scaffolding Pattern for python CLI tools",
-    "language": "Python",
-    "stars": 1,
-    "forks": 0,
-    "topics": [
-      "automation",
-      "cli",
-      "python"
-    ],
-    "pushed_at": "2024-02-11T19:36:23Z",
-    "updated_at": "2023-12-17T09:22:42Z",
-    "created_at": "2023-12-17T06:21:33Z",
-    "html_url": "https://github.com/23skdu/py-tool-template",
-    "homepage": "",
-    "size": 6
-  },
-  {
-    "name": "Centos7.7.1908-Packer-Vagrant",
-    "description": "Centos 7.7.1908 Packer files, Vagrantfile for DevVM: nodejs, ruby, perl, python unit testing",
-    "language": "Perl",
-    "stars": 1,
-    "forks": 1,
-    "topics": [],
-    "pushed_at": "2019-09-23T19:20:07Z",
-    "updated_at": "2023-03-05T00:00:25Z",
-    "created_at": "2019-09-17T16:58:05Z",
-    "html_url": "https://github.com/23skdu/Centos7.7.1908-Packer-Vagrant",
-    "homepage": "",
-    "size": 33
+    "size": 142
   }
 ]
